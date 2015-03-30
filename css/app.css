@@ -1,0 +1,8 @@
+.dropdown-menu {
+    float:none;
+    position:relative;
+}
+
+.dropdown-toggle {
+    width:100%;
+}

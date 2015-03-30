@@ -2,10 +2,20 @@
 <html ng-app="translate">
     
 	<head>
-		<link rel="stylesheet" type="text/css" href="bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/loading-bar.css" />
+        <link rel="stylesheet" type="text/css" href="css/app.css" />
+        
+        <script type="text/javascript" src="vendor-js/jquery.js"></script>
+        <script type="text/javascript" src="vendor-js/bootstrap.js"></script>
+		<script type="text/javascript" src="vendor-js/angular.js"></script>
+        <script type="text/javascript" src="vendor-js/loading-bar.js"></script>
+        <script type="text/javascript" src="app-js/directives.js"></script>
+        <script type="text/javascript" src="app-js/controllers.js"></script>
+        <script type="text/javascript" src="app-js/variables.js"></script>
+		<script type="text/javascript" src="app-js/app.js"></script>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<script type="text/javascript" src="angular.js"></script>
-		<script type="text/javascript" src="app.js"></script>
 	</head>
     
 	<body ng-controller="TranslateController as translateCtrl">
@@ -13,7 +23,9 @@
         <div class="container">
             <div class="col-xs-12">
                 
-                <div ng-show="translateCtrl.error" class="alert alert-danger" role="alert">The service is currently unavailable. Please try again later.</div>
+                <error-messages></error-messages>
+                
+                
                 <form ng-show="translateCtrl.languagesLoaded" ng-submit="translateCtrl.submit()">
                     
                     <div class="input-group input-group-lg">
@@ -22,14 +34,30 @@
                             <button class="btn btn-default" type="submit">Translate</button>
                         </span>
                     </div>
+                    
+                    
+                    <div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+      <span>Choose languages: {{translateCtrl.langsSelected}} / 5 Languages Selected</span>
+    <span class="caret"></span>
+  </button>
+
+    <ul stop-event="click" class="dropdown-menu" role="menu">
+                            <div class="btn-group" ng-repeat="language in translateCtrl.langsMap">
+                                <button ng-click="translateCtrl.toggleClass(language)" ng-class="language.selected ? 'active' : ''" type="button" class="btn btn-default">{{language.name}}</button>
+                            </div>
+    </ul>
+                        
+                        
+</div>
+                    
+                    
                 
-                    <div class="input-group">
                     
                     
-                    </div>
                     <ul class="list-group">
 			         <li class="list-group-item" ng-repeat="translation in translateCtrl.translations">
-                    <translation-block></translation-block>
+                        <translation-block></translation-block>
                         </li>
                     </ul>
                 </form>
