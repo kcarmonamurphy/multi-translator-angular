@@ -6,3 +6,9 @@
 .dropdown-toggle {
     width:100%;
 }
+
+.lang-tag {
+    padding: 5px;
+    margin: 0 6px;
+    border: 1px dashed grey;
+}

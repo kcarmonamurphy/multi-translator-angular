@@ -14,13 +14,23 @@ directives.directive('errorMessages', function () {
     };
 });
 
-directives.directive('toggleClass2', function () {
+directives.directive('toggleClass', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
             element.bind('click', function () {
                 element.toggleClass(attrs.toggleClass);
+            });
+        }
+    };
+});
 
+directives.directive('removeLanguage', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.bind('click', function () {
+                element.removeClass(attrs.removeClass);
             });
         }
     };

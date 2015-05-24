@@ -19,4 +19,8 @@
         };
     }]);
 
+    app.run( ['$rootScope', 'CONSTANTS', function ($rootScope, CONSTANTS) {
+        $rootScope.CONSTANTS = CONSTANTS;
+    }]);
+
 })();

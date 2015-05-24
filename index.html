@@ -35,20 +35,24 @@
                 </div>
 
                 <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                        <span>Choose languages: {{langsSelected}} / 5 Languages Selected</span>
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                        <span class="btn" ng-show="langsSelected.length == 0">Selected up to {{CONSTANTS.MAX_LANGS}} languages:</span>
+                        <span  ng-repeat="language in langsSelected">
+                            <span class="lang-tag">{{language.name}}</span>
+                        </span>
+                        <span class="btn" ng-show="langsSelected.length > 0">{{langsSelected.length}} / {{CONSTANTS.MAX_LANGS}}</span>
                         <span class="caret"></span>
                     </button>
 
                     <ul stop-event="click" class="dropdown-menu" role="menu">
                         <div class="btn-group" ng-repeat="language in langsMap">
-                            <button ng-click="toggleClass(language)" ng-class="language.selected ? 'active' : ''" type="button" class="btn btn-default">{{language.name}}</button>
+                            <button ng-click="toggleClass(language)" ng-class="language.selected ? 'active btn-info' : 'btn-default'" type="button" class="btn">{{language.name}}</button>
                         </div>
                     </ul>
                 </div>
 
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="translation in translations">
+                    <li class="list-group-item" ng-repeat="language in langsSelected">
                         <translation-block></translation-block>
                     </li>
                 </ul>
