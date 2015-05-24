@@ -8,36 +8,50 @@ controllers.controller('TranslateController', ['$http', 'getLangCodes', '$scope'
         $scope.langsMap = [];
         $scope.langsSelected = [];
         $scope.languagesLoaded = false;
-
-        //initialization: bring down list of all available language translations
-        getLangCodes("en").success(function (data) {
-            for (var key in data.langs) {
-                $scope.langsMap.push({
-                    code: key,
-                    name: data.langs[key],
-                    selected: false
-                });
-            }
-            //show the main interface only once the page has loaded
-            $scope.languagesLoaded = true;
-        }).error(function (error) {
-            $scope.error = true;
+                            
+        $(window).on("beforeunload", function() { 
+            $scope.exit();
         });
                             
-        $scope.removeLanguage = function (language) {
-            var obj = $scope.langsSelected.filter(function (obj) {
-                return obj.name === language.name;
-            })[0];
+        $(window).ready(function() {
+            $scope.initialize();
+        });
 
-            $scope.langsSelected.splice($.inArray(obj, $scope.langsSelected), 1);
+        $scope.initialize = function (language) {
+            var langsSelectedSaved = localStorage.getItem("langsSelectedSaved");
+            var langsMapSaved = localStorage.getItem("langsMapSaved");
             
-            var obj = $scope.langsMap.filter(function (obj) {
-                return obj.name === language.name;
-            })[0];
-
-            $scope.langsMap.splice($.inArray(obj, $scope.langsSelected), 1);
+            if (langsMapSaved) {
+                //if langsMapSaved exists from previous session
+                $scope.languagesLoaded = true;
+                $scope.langsSelected = JSON.parse(langsSelectedSaved);
+                $scope.langsMap = JSON.parse(langsMapSaved);
+            } else {
+                //fresh initialization: bring down list of all available language translations
+                getLangCodes("en").success(function (data) {
+                    for (var key in data.langs) {
+                        $scope.langsMap.push({
+                            code: key,
+                            name: data.langs[key],
+                            selected: false
+                        });
+                    }
+                    //show the main interface only once the page has loaded
+                    $scope.languagesLoaded = true;
+                }).error(function (error) {
+                    $scope.error = true;
+                });
+            } 
         };
-            
+                            
+        $scope.exit = function() {
+            if ($scope.langsSelected != null) {
+                localStorage.setItem('langsSelectedSaved', angular.toJson($scope.langsSelected));
+            }
+            if ($scope.langsMap != null) {
+                localStorage.setItem('langsMapSaved', angular.toJson($scope.langsMap));
+            }
+        };   
 
         $scope.toggleClass = function (language) {
             if (language.selected) {

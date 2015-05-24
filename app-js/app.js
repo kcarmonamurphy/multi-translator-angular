@@ -21,6 +21,11 @@
 
     app.run( ['$rootScope', 'CONSTANTS', function ($rootScope, CONSTANTS) {
         $rootScope.CONSTANTS = CONSTANTS;
+        
+        //var inFormOrLink = false;
+        //$('a').on('click', function() { inFormOrLink = true; });
+        //$('form').on('submit', function() { inFormOrLink = true; });
+
     }]);
 
 })();

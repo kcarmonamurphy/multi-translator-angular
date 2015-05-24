@@ -24,6 +24,10 @@
         <div class="col-xs-12">
 
             <error-messages></error-messages>
+            
+            <h2>Multi-translator</h2>
+            <a href="https://kevcom@github.com/kevcom/multi-translator-angular.git">A quick word about the tool</a>
+            <hr />
 
             <form ng-show="languagesLoaded" ng-submit="submit()">
 
@@ -36,7 +40,7 @@
 
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                        <span class="btn" ng-show="langsSelected.length == 0">Selected up to {{CONSTANTS.MAX_LANGS}} languages:</span>
+                        <span class="btn" ng-show="langsSelected.length == 0">Select up to {{CONSTANTS.MAX_LANGS}} languages:</span>
                         <span  ng-repeat="language in langsSelected">
                             <span class="lang-tag">{{language.name}}</span>
                         </span>
@@ -46,7 +50,7 @@
 
                     <ul stop-event="click" class="dropdown-menu" role="menu">
                         <div class="btn-group" ng-repeat="language in langsMap">
-                            <button ng-click="toggleClass(language)" ng-class="language.selected ? 'active btn-info' : 'btn-default'" type="button" class="btn">{{language.name}}</button>
+                            <button ng-click="toggleClass(language);" ng-class="language.selected ? 'active btn-info' : 'btn-default'" type="button" class="btn">{{language.name}}</button>
                         </div>
                     </ul>
                 </div>
