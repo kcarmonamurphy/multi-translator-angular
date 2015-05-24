@@ -3,8 +3,8 @@
 
     app.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = false;
-        cfpLoadingBarProvider.includeBar = false;
-        cfpLoadingBarProvider.latencyThreshold = 0;
+        cfpLoadingBarProvider.includeBar = true;
+        cfpLoadingBarProvider.latencyThreshold = 500;
     }]);
 
     app.factory('getLangCodes', ['$http', 'CONSTANTS', function ($http, CONSTANTS) {
@@ -12,20 +12,13 @@
             return $http({
                 url: CONSTANTS.LANGS_URL + CONSTANTS.API_KEY,
                 method: "GET",
-                params: {
-                    ui: uilang
-                }
+                params: { ui: uilang }
             });
         };
     }]);
 
     app.run( ['$rootScope', 'CONSTANTS', function ($rootScope, CONSTANTS) {
         $rootScope.CONSTANTS = CONSTANTS;
-        
-        //var inFormOrLink = false;
-        //$('a').on('click', function() { inFormOrLink = true; });
-        //$('form').on('submit', function() { inFormOrLink = true; });
-
     }]);
 
 })();
