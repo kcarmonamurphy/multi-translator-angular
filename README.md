@@ -1,3 +1,5 @@
+![6i4SaETQOk](https://user-images.githubusercontent.com/1145018/160326731-203db3c2-9811-45e1-800f-3a712dc51d9e.gif)
+
 # Multi-Translator
 
 `multi-translator-angular` is a simple Angular.js (v1) app which can translate an English word or phrase into multiple languages, simultaneously. It relies on the LibreTranslate translation engine to provide these translations.
