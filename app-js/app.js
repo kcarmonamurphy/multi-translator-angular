@@ -10,7 +10,7 @@
     app.factory('getLangCodes', ['$http', 'CONSTANTS', function ($http, CONSTANTS) {
         return function (uilang) {
             return $http({
-                url: CONSTANTS.LANGS_URL + CONSTANTS.API_KEY,
+                url: CONSTANTS.LANGS_URL,
                 method: "GET",
                 params: { ui: uilang }
             });
